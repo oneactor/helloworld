@@ -1,0 +1,10 @@
+image: daocloud/ci-golang:1.4
+
+before_script:
+  - mkdir -p /gopath/src/helloworld
+  - mv ./* /gopath/src/helloworld
+
+script:
+  - export GOPATH=/gopath
+  - go get -t helloworld
+  - go test helloworld
