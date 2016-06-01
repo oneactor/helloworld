@@ -1,7 +1,34 @@
 package main
 
-import "fmt"
+import (
+    "fmt"
+    // "html/template"
+    "log"
+    "net/http"
+    // "os"
+    // "strings"
+)
 
 func main() {
-	fmt.Println("hello world shakalaka")
+    http.HandleFunc("/", index)
+    log.Println("Start listening...")
+    err := http.ListenAndServe(":80", nil)
+    if err != nil {
+        panic(err)
+    }
 }
+
+func index(res http.ResponseWriter, req *http.Request) {
+    defer func() {
+        if e := recover(); e != nil {
+            log.Println(e)
+            res.WriteHeader(http.StatusInternalServerError)
+        }
+    }()
+
+    log.Println("Index home")
+    
+    res.Write([]byte(fmt.Sprintf("Request number is %d", 2)))
+}
+
+
