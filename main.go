@@ -28,5 +28,5 @@ func index(res http.ResponseWriter, req *http.Request) {
 
 	log.Println("Index home")
 
-	res.Write([]byte(fmt.Sprintf("welcome ! 妮妮")))
+	res.Write([]byte(fmt.Sprintf("welcome ! 妮3")))
 }
